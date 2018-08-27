@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import './TodoItem.css';
+import classNames from 'classnames/bind';
+import styles from './TodoItem.css';
+
+const cn = classNames.bind(styles);
 
 class TodoItem extends Component {
 
@@ -10,13 +13,13 @@ class TodoItem extends Component {
     render() {
         const { text, checked, id, onToggle, onRemove } = this.props;
         return (
-            <div className="todo-item" onClick={() => onToggle(id)}>
-                <div className="remove" onClick={(e) => {e.stopPropagation(); onRemove(id)}}>&times;</div>
-                <div className={`todo-text ${checked && 'checked'}`}>
+            <div className={styles.todoItem} onClick={() => onToggle(id)}>
+                <div className={styles.remove} onClick={(e) => {e.stopPropagation(); onRemove(id)}}>&times;</div>
+                <div className={cn(styles.todoText, checked && 'checked')}>
                     <div>{text}</div>
                 </div>
                 {
-                    checked && (<div className="check-mark"></div>)
+                    checked && (<div className={styles.checkMark}></div>)
                 }
             </div>
         );
